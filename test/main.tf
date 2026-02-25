@@ -1,5 +1,10 @@
 provider "aws" {
     region = "us-east-2"
+
+
+    assume_role {
+    role_arn = "arn:aws:iam::907143134003:role/TerraformStateAccessRole"
+  }
 }
 terraform {
   

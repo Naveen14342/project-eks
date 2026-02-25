@@ -29,7 +29,7 @@ jobs:
       - name: aws-credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::083546510488:role/github-pipeline
+          role-to-assume: arn:aws:iam::083546510488:role/github-pipeline-eks
           aws-region: ${{ matrix.region }}  
 
       - name: setup terraform

@@ -34,7 +34,7 @@ resource "aws_eks_node_group" "managed_node_group" {
 
     capacity_type = "ON_DEMAND"
     instance_types = ["t3.medium"]
-    ami_type = "AL2_x86_64"
+    ami_type = "AL2023_x86_64_STANDARD"
 
     depends_on = [
         aws_iam_role_policy_attachment.eks_node_group_role_attachment,

@@ -20,7 +20,7 @@ jobs:
             region: us-east-2
     defaults:
       run:
-        working-directory: PROJECT-EKS/${{ matrix.environment }}
+        working-directory: project-eks/${{ matrix.environment }}
 
     steps:
       - name: checkout

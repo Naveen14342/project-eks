@@ -6,7 +6,7 @@ data "terraform_remote_state" "network" {
     region = "us-east-2"
   }
 
-  role_arn = "arn:aws:iam::907143134003:role/TerraformStateAccessRole"
+  
 }
 
 resource "aws_eks_cluster" "eks" {

@@ -15,7 +15,7 @@ resource "aws_eks_cluster" "eks" {
     }
 
     depends_on = [
-        aws_role_policy_attachment.eks_cluster_role_attachment
+        aws_iam_role_policy_attachment.eks_cluster_role_attachment
     ]
   
 }
@@ -36,8 +36,8 @@ resource "aws_eks_node_group" "managed_node_group" {
     ami_type = "AL2_x86_64"
 
     depends_on = [
-        aws_role_policy_attachment.eks_node_group_role_attachment,
-        aws_role_policy_attachment.eks_cni_policy_attachment,
-        aws_role_policy_attachment.eks_registry_policy_attachment
+        aws_iam_role_policy_attachment.eks_node_group_role_attachment,
+        aws_iam_role_policy_attachment.eks_cni_policy_attachment,
+        aws_iam_role_policy_attachment.eks_registry_policy_attachment
     ]
 }

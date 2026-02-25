@@ -1,0 +1,48 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches:
+      - feature/terraform-eks
+
+permissions:
+  id-token: write 
+  contents: read
+jobs:
+  eks:
+    runs-on: self-hosted
+    strategy:
+      max-parallel: 1
+      matrix:
+        include:
+          - environment: dev  
+            region: us-east-1
+          - environment: test
+            region: us-east-2
+    defaults:
+      run:
+        working-directory: PROJECT-EKS/${{ matrix.environment }}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: aws-credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::083546510488:role/github-pipeline
+          aws-region: ${{ matrix.region }}  
+
+      - name: setup terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.7.0
+
+      - name: terraform init
+        run: terraform init
+
+      - name: terraform plan
+        run: terraform plan -out=tfplan
+
+      - name: terraform apply
+        run: terraform apply -auto-approve tfplan
+          

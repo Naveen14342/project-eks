@@ -12,7 +12,7 @@ resource "aws_eks_cluster" "eks" {
     name    = "my-eks-cluster"
     role_arn = aws_iam_role.eks_cluster_role.arn
     vpc_config {
-      subnet_ids = data.terraform_remote_state.network.outputs.private_subnets
+      subnet_ids = data.terraform_remote_state.network.outputs.private_subnet_ids
     }
 
     depends_on = [

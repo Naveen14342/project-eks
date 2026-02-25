@@ -25,7 +25,7 @@ resource "aws_eks_node_group" "managed_node_group" {
     cluster_name = aws_eks_cluster.eks.name
     node_group_name = "my-managed-node-group"
     node_role_arn = aws_iam_role.eks_node_group_role.arn
-    subnet_ids = data.terraform_remote_state.network.outputs.private_subnets
+    subnet_ids = data.terraform_remote_state.network.outputs.private_subnet_ids
     scaling_config {
         desired_size = 2
         max_size = 3

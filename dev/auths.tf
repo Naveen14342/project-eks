@@ -23,7 +23,7 @@ resource "kubernetes_config_map_v1" "aws_auth" {
         username = "github-pipeline-pod"
         groups   = ["system:masters"]
       
-      }
+      },
       {
         rolearn  = aws_iam_role.eks_node_group_role.arn
         username = "system:node:{{EC2PrivateDNSName}}"

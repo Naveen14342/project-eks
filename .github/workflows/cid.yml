@@ -23,7 +23,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ matrix.environment }}
-
+    if: matrix.environment == 'test'
     steps:
       - name: checkout
         uses: actions/checkout@v3

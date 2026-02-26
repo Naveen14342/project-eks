@@ -42,8 +42,11 @@ jobs:
       - name: terraform init
         run: terraform init
 
-      - name: terraform import
-        run: terraform import kubernetes_config_map_v1.aws_auth kube-system/aws-auth
+      - name: terraform plan
+        run: terraform plan -out=tfplan
+
+      - name: terraform apply
+        run: terraform apply -auto-approve tfplan
 
       
           

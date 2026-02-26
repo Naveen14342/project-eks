@@ -19,7 +19,7 @@ jobs:
           - environment: test
             region: us-east-2
     env:
-      TF_VARS_environment: ${{ matrix.environment }}
+      export TF_VARS_environment: ${{ matrix.environment }}
     defaults:
       run:
         working-directory: ${{ matrix.environment }}

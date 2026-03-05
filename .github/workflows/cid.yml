@@ -24,6 +24,9 @@ jobs:
     defaults:
       run:
         working-directory: ${{ matrix.environment }}
+
+    if: matrix.environment == 'test'
+    
     
     steps:
       - name: checkout
@@ -42,12 +45,14 @@ jobs:
 
       - name: terraform init
         run: terraform init
-
+        
+      - name: auth
+        run : terraform import kubernetes_config_map_v1.aws_auth kube-system/aws-auth
       - name: terraform plan
         run: terraform plan -out=tfplan
 
-      - name: terraform apply
-        run: terraform apply -auto-approve tfplan
+      - name: terraform  destroy
+        run: terraform destroy -auto-approve
          
 
       

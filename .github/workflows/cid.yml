@@ -25,7 +25,7 @@ jobs:
       run:
         working-directory: ${{ matrix.environment }}
 
-    if: matrix.environment == 'test'
+    if: ${{ matrix.environment == 'test' }}
     
     
     steps:
@@ -46,8 +46,7 @@ jobs:
       - name: terraform init
         run: terraform init
         
-      - name: auth
-        run : terraform import kubernetes_config_map_v1.aws_auth kube-system/aws-auth
+      
       - name: terraform plan
         run: terraform plan -out=tfplan
 
